@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: movie-indexer
+description: Indexer for movie frontend
+networks:
+  - id: 11155420
+    start_block: 0
+    contracts:
+      - name: MovieFactory
+        address:
+          - 0x116deeE461628AD772A35Fe0Eb8F9F675B46D167
+        handler: src/EventHandlers.ts
+        events:
+          - event: OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+          - event: MovieTokenCreated(address indexed tokenAddress, address indexed owner, string name, string symbol, uint256 totalAmount, uint256 endTime, uint256 numOfTotalAllotments)
+      - name: Movie
+        abi_file_path: abis/Movie.json
+        handler: src/EventHandlers.ts
+        events:
+          - event: WinnerSelected(address indexed winner, address indexed movieAddress)
+          - event: Transfer(address indexed from, address indexed to, uint256 value)
+          - event: Launch(string newUrl)
+          - event: TokenMinted(address indexed winner, uint256 amount)
+          - event: Staked(address indexed staker,address indexed movie, uint256 numOfAllotments, string tokenName)
+
+unordered_multichain_mode: true
+preload_handlers: true

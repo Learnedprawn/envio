@@ -1,0 +1,42 @@
+type MovieFactory_OwnershipTransferred {
+  id: ID!
+  previousOwner: String!
+  newOwner: String!
+}
+type MovieFactory_MovieTokenCreated {
+  id: ID!
+  tokenAddress: String!
+  owner: String!
+  name: String!
+  symbol: String!
+  totalAmount: BigInt!
+  endTime: BigInt!
+  numOfTotalAllotments: BigInt!
+}
+type Movie_WinnerSelected {
+  id: ID!
+  winner: String!
+  movieAddress: String!
+}
+type Movie_Launch {
+  id: ID!
+  newUrl: String!
+}
+type Movie_TokenMinted {
+  id: ID!
+  winner: String!
+  amount: BigInt!
+}
+type Movie_Transfer {
+  id: ID!
+  from: String!
+  to: String!
+  value: BigInt!
+}
+type Movie_Staked {
+  id: ID!
+  staker: String!
+  movie: String!
+  numOfAllotments: BigInt!
+  tokenName: String!
+}
